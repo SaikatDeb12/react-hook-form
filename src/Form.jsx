@@ -1,6 +1,19 @@
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+
 export const Form = () => {
-  const { register, handleSubmit } = useForm("");
+  const schema = yup.object().shape({
+    fullName: yup.string().required(),
+    age: yup.number().required().integer().min(18).positive(),
+    email: yup.string().email().required(),
+    password: yup.string().min(4).max(20).required(),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null])
+      .required(),
+  });
+  const { register, handleSubmit } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -11,19 +24,19 @@ export const Form = () => {
       <input
         type="text"
         placeholder="Full Name"
-        {...register("Full Name")}
+        {...register("fullName")}
       ></input>
-      <input type="text" placeholder="Age" {...register("Age")}></input>
-      <input type="text" placeholder="Email" {...register("Email")}></input>
+      <input type="text" placeholder="Age" {...register("age")}></input>
+      <input type="text" placeholder="Email" {...register("email")}></input>
       <input
         type="text"
         placeholder="Password"
-        {...register("Password")}
+        {...register("password")}
       ></input>
       <input
         type="text"
         placeholder="Confirm Password"
-        {...register("Confirm Password")}
+        {...register("confirmPassword")}
       ></input>
       <button>Submit</button>
     </form>
