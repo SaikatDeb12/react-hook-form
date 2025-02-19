@@ -29,15 +29,11 @@ export const Form = () => {
   return (
     //what is being done here
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="text"
-        placeholder="Full Name"
-        {...register("fullName")}
-      ></input>
+      <input type="text" placeholder="Full Name" {...register("fullName")} />
       <p>{errors.fullName?.message}</p>
-      <input type="text" placeholder="Age" {...register("age")}></input>
+      <input type="text" placeholder="Age" {...register("age")} />
       <p>{errors.age?.message}</p>
-      <input type="text" placeholder="Email" {...register("email")}></input>
+      <input type="text" placeholder="Email" {...register("email")} />
       <p>{errors.email?.message}</p>
       <input
         type="password"
