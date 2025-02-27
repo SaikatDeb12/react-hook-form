@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { object, z } from "zod";
+import { z } from "zod";
 import { useEffect } from "react";
 
 const onSubmit = (e) => {
@@ -8,7 +8,7 @@ const onSubmit = (e) => {
 };
 
 const schema = z.object({
-  name: z.string().min(1, "required"),
+  name: z.string(),
   address: z.string().min(1, "required"),
   phone: z.string().length(10, "Phn no. should be of 10 digits"),
   email: z.string().email("invalid"),
